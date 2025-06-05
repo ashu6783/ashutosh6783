@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mathongo PYQ Chapter-wise App
+
+This is a [Next.js](https://nextjs.org) project for browsing and tracking chapter-wise Previous Year Questions (PYQs) for Physics, Chemistry, and Mathematics. The app features a modern UI, subject tabs, animated chapter lists, and dark mode support.
+
+## Features
+
+- Chapter-wise PYQ breakdown for Physics, Chemistry, and Mathematics
+- Animated UI with [framer-motion](https://www.framer.com/motion/)
+- Dark mode toggle
+- Responsive design
+- Progress tracking for solved questions
+- Built with [Next.js App Router](https://nextjs.org/docs/app)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- State management using [Redux Toolkit](https://redux-toolkit.js.org/)
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
 
-```bash
+```sh
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
+
+```sh
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/` - Next.js app directory (entry point, global styles)
+- `components/` - UI components (e.g., `Header`, `SubjectTabs`, `ChapterList`, `chapterItem.tsx`)
+- `hooks/` - Custom React hooks
+- `lib/` - Utility functions and helpers
+- `store/` - Redux store and slices
+- `types/` - TypeScript types
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Lint code
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js 15
+- React 19
+- Tailwind CSS 4
+- Redux Toolkit
+- Framer Motion
+- Phosphor React Icons
+- Lucide React Icons
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) (see dependencies for details)
+
+---
