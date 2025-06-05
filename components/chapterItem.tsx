@@ -6,7 +6,6 @@ import { ChevronUp, ChevronDown } from 'lucide-react';
 import { ChapterData } from '../types';
 import { calculateTotalQuestions, getQuestionCountChange } from '../lib/utils';
 import { getChapterIcon } from '@/lib/chapterIcons';
-import { cn } from '../lib/utils';
 
 interface ChapterItemProps {
   chapter: ChapterData;
@@ -16,7 +15,7 @@ interface ChapterItemProps {
 export const ChapterItem: React.FC<ChapterItemProps> = ({ chapter, index = 0 }) => {
   const IconComponent = getChapterIcon(chapter.chapter);
   const totalQuestions = calculateTotalQuestions(chapter.yearWiseQuestionCount);
-  const { change, direction } = getQuestionCountChange(chapter.yearWiseQuestionCount);
+  const {direction } = getQuestionCountChange(chapter.yearWiseQuestionCount);
   
   const years = Object.keys(chapter.yearWiseQuestionCount).sort();
   const currentYear = years[years.length - 1];

@@ -6,6 +6,9 @@ import { useAppSelector, useAppDispatch } from '../hooks/redux';
 import { Flask, TestTube, ChartBar } from "phosphor-react";
 import { setActiveSubject } from '../store';
 import { Subject } from '../types';
+import Image from 'next/image';
+
+import logo from '../public/logo.png';
 
 const sidebarItems = [
   {
@@ -50,8 +53,8 @@ export const Sidebar: React.FC = () => {
       <div className="p-6 bg-gray-50 dark:bg-gray-900 h-full">
         <div className="mb-8">
           <div className="flex flex-row justify-center items-center gap-3">
-            <img src="./logo.png" className='w-8 h-8 mb-2' alt="NTA logo" />
-          <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            <Image src={logo} width={32} height={32} alt="NTA logo" />
+          <h1 className="text-xl font-bold text-gray-900 pt-2 dark:text-gray-100 mb-2">
             JEE Main
           </h1>
           </div>

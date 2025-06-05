@@ -1,4 +1,3 @@
-// store/index.ts
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ChapterData, FilterState, Subject, SortOrder } from '../types';
 import { mockData } from '../lib/mockData';

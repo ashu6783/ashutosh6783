@@ -13,10 +13,11 @@ import {
   Ruler,
   Crosshair,
   Timer,
-  Lightning
+  Lightning,
+  IconProps
 } from "phosphor-react";
 
-export const chapterIconMap: { [key: string]: any } = {
+export const chapterIconMap: { [key: string]: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>> } = {
   "Gravitation": Globe,
   "Math in Physics": Calculator,
   "Units and Dimensions": Ruler,

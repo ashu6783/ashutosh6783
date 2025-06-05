@@ -1,9 +1,6 @@
-// FilterBar Component
 "use client";
 
 import React from 'react';
-import { ArrowUpDown } from 'lucide-react';
-import { Button } from './ui/button';
 import { MultiSelect } from './multi-select';
 import { Switch } from './ui/switch';
 import { Label } from './ui/label';
@@ -13,7 +10,6 @@ import {
   setSelectedUnits,
   setSelectedStatus,
   setShowWeakChapters,
-  setSortOrder,
 } from '../store';
 import { getUniqueClasses, getUniqueUnits } from '../lib/utils';
 

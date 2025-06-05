@@ -5,7 +5,7 @@ import { ChapterItem } from '../components/chapterItem';
 import { filterChapters } from '../lib/utils';
 import { ArrowUpDown } from 'lucide-react';
 import { Button } from './ui/button';
-import { useAppSelector, useAppDispatch } from '../hooks/redux';
+import { useAppSelector} from '../hooks/redux';
 import { setSortOrder } from '../store'; 
 import { useDispatch } from 'react-redux';
 

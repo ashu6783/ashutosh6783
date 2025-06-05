@@ -1,4 +1,3 @@
-// MultiSelect Component with Framer Motion Border Beam
 "use client"
 
 import * as React from "react"
@@ -8,7 +7,7 @@ import { cn } from "../lib/utils"
 import { Button } from "./ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "./ui/command"
-import { Badge } from "./ui/badge"
+
 
 export interface Option {
   label: string
@@ -132,8 +131,6 @@ export function MultiSelect({
   onChange,
   placeholder = "Select items...",
   className,
-  maxDisplayItems = 1,
-  maxLabelLength = 15,
   showBorderBeam = false,
   beamColor = "#ffaa40",
   beamDuration = 4,
