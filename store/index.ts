@@ -2,12 +2,14 @@ import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ChapterData, FilterState, Subject, SortOrder } from '../types';
 import { mockData } from '../lib/mockData';
 
+type ThemeType = 'system' | 'dark' | 'light';
+
 interface AppState {
   chapters: ChapterData[];
   activeSubject: Subject;
   filters: FilterState;
   sortOrder: SortOrder;
-  isDarkMode: boolean;
+  theme: ThemeType;
 }
 
 const initialState: AppState = {
@@ -20,7 +22,7 @@ const initialState: AppState = {
     showWeakChapters: false,
   },
   sortOrder: "asc",
-  isDarkMode: false,
+   theme: 'system',
 };
 
 const appSlice = createSlice({
@@ -29,7 +31,6 @@ const appSlice = createSlice({
   reducers: {
     setActiveSubject: (state, action: PayloadAction<Subject>) => {
       state.activeSubject = action.payload;
-      // Reset filters when changing subject
       state.filters = {
         selectedClasses: [],
         selectedUnits: [],
@@ -52,9 +53,9 @@ const appSlice = createSlice({
     setSortOrder: (state) => {
       state.sortOrder = state.sortOrder === "asc" ? "desc" : "asc";
     },
-    toggleDarkMode: (state) => {
-      state.isDarkMode = !state.isDarkMode;
-    },
+    setTheme:(state,action: PayloadAction<ThemeType>) => {
+      state.theme = action.payload;
+    }
   },
 });
 
@@ -65,7 +66,7 @@ export const {
   setSelectedStatus,
   setShowWeakChapters,
   setSortOrder,
-  toggleDarkMode,
+  setTheme,
 } = appSlice.actions;
 
 export const store = configureStore({

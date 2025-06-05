@@ -8,35 +8,31 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const { isDarkMode } = useAppSelector((state) => state.app);
-  const [systemDark, setSystemDark] = useState(false);
+  const theme = useAppSelector((state) => state.app.theme); // 'system' | 'dark' | 'light'
+  const [systemPrefersDark, setSystemPrefersDark] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    setSystemDark(mediaQuery.matches);
 
     const handleChange = (e: MediaQueryListEvent) => {
-      setSystemDark(e.matches);
+      setSystemPrefersDark(e.matches);
     };
 
-    mediaQuery.addEventListener("change", handleChange);
+    // Set initial value
+    setSystemPrefersDark(mediaQuery.matches);
 
+    // Listen to system preference changes
+    mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {
     const root = window.document.documentElement;
+    const shouldUseDark =
+      theme === "dark" ? true : theme === "light" ? false : systemPrefersDark;
 
-    const dark = isDarkMode !== undefined && isDarkMode !== null
-      ? isDarkMode
-      : systemDark;
-
-    if (dark) {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-  }, [isDarkMode, systemDark]);
+    root.classList.toggle("dark", shouldUseDark);
+  }, [theme, systemPrefersDark]);
 
   return <>{children}</>;
 };

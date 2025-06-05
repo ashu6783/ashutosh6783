@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { Flask, TestTube, Calculator, ArrowLeft, Moon, Sun } from "phosphor-react";
 import { Button } from './ui/button';
 import { useAppSelector, useAppDispatch } from "../hooks/redux";
-import { setActiveSubject, toggleDarkMode } from "../store";
+import { setActiveSubject, setTheme } from "../store";
 import { Subject } from "../types";
 
 const subjectConfig = {
@@ -29,11 +29,18 @@ const subjectConfig = {
 
 export const SubjectTabs: React.FC = () => {
     const dispatch = useAppDispatch();
-    const { activeSubject, isDarkMode } = useAppSelector((state) => state.app);
+    const { activeSubject, theme } = useAppSelector((state) => state.app);
 
     const handleSubjectChange = (value: string) => {
         dispatch(setActiveSubject(value as Subject));
     };
+
+    const toggleTheme = () => {
+    const nextTheme = theme === "light" ? "dark" : "light";
+    dispatch(setTheme(nextTheme));
+  };
+
+    
 
     return (
         <div className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 lg:hidden">
@@ -48,18 +55,18 @@ export const SubjectTabs: React.FC = () => {
                 <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => dispatch(toggleDarkMode())}
+                    onClick={toggleTheme}
                     className="p-2"
                 >
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={isDarkMode ? 'sun' : 'moon'}
+                            key={theme==="dark" ? 'moon' : 'sun'}
                             initial={{ scale: 0, rotate: -180 }}
                             animate={{ scale: 1, rotate: 0 }}
                             exit={{ scale: 0, rotate: 180 }}
                             transition={{ type: "spring", stiffness: 200, damping: 15 }}
                         >
-                            {isDarkMode ? (
+                            {theme === "dark" ? (
                                 <Sun size={20} weight="fill" />
                             ) : (
                                 <Moon size={20} weight="bold" />
