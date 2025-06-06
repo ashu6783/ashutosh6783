@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks/redux";
-import { setTheme, initializeTheme } from "../store";
+import { initializeTheme } from "../store";
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -25,9 +25,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     
-    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
-      // Only auto-update if user hasn't manually changed the theme
-      // You can add logic here if you want to track user preference vs system
+    const handleSystemThemeChange = () => {
+     
     };
 
     mediaQuery.addEventListener("change", handleSystemThemeChange);
