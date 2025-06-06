@@ -24,7 +24,6 @@ const initialState: AppState = {
   theme: 'light',
   isThemeInitialized: false,
 };
-
 const appSlice = createSlice({
   name: 'app',
   initialState,
@@ -54,7 +53,8 @@ const appSlice = createSlice({
       state.sortOrder = state.sortOrder === "asc" ? "desc" : "asc";
     },
     toggleTheme: (state) => {
-      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      const newTheme = state.theme === 'dark' ? 'light' : 'dark';
+      state.theme = newTheme;
     },
     setTheme: (state, action: PayloadAction<'dark' | 'light'>) => {
       state.theme = action.payload;
