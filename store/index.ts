@@ -2,14 +2,13 @@ import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ChapterData, FilterState, Subject, SortOrder } from '../types';
 import { mockData } from '../lib/mockData';
 
-type ThemeType = 'system' | 'dark' | 'light';
-
 interface AppState {
   chapters: ChapterData[];
   activeSubject: Subject;
   filters: FilterState;
   sortOrder: SortOrder;
-  theme: ThemeType;
+  theme: 'dark' | 'light';
+  isThemeInitialized: boolean;
 }
 
 const initialState: AppState = {
@@ -22,7 +21,8 @@ const initialState: AppState = {
     showWeakChapters: false,
   },
   sortOrder: "asc",
-   theme: 'system',
+  theme: 'light',
+  isThemeInitialized: false,
 };
 
 const appSlice = createSlice({
@@ -53,9 +53,18 @@ const appSlice = createSlice({
     setSortOrder: (state) => {
       state.sortOrder = state.sortOrder === "asc" ? "desc" : "asc";
     },
-    setTheme:(state,action: PayloadAction<ThemeType>) => {
+    toggleTheme: (state) => {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+    },
+    setTheme: (state, action: PayloadAction<'dark' | 'light'>) => {
       state.theme = action.payload;
-    }
+    },
+    initializeTheme: (state, action: PayloadAction<'dark' | 'light'>) => {
+      if (!state.isThemeInitialized) {
+        state.theme = action.payload;
+        state.isThemeInitialized = true;
+      }
+    },
   },
 });
 
@@ -66,7 +75,9 @@ export const {
   setSelectedStatus,
   setShowWeakChapters,
   setSortOrder,
+  toggleTheme,
   setTheme,
+  initializeTheme,
 } = appSlice.actions;
 
 export const store = configureStore({

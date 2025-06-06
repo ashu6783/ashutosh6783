@@ -5,16 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CaretLeft, Moon, Sun, Flask, TestTube, ChartBar } from 'phosphor-react';
 import { Button } from './ui/button';
 import { useAppSelector, useAppDispatch } from '../hooks/redux';
-import { setTheme } from '../store';
+import { toggleTheme } from '../store';
 
 export const Header: React.FC = () => {
   const dispatch = useAppDispatch();
   const { activeSubject, theme } = useAppSelector((state) => state.app);
 
-  const toggleTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    dispatch(setTheme(nextTheme));
-  };
+  const isDarkMode = theme === 'dark';
 
   const subjectConfig = {
     Physics: {
@@ -192,18 +189,18 @@ export const Header: React.FC = () => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={toggleTheme}
+              onClick={() => dispatch(toggleTheme())}
               className="p-3"
             >
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={theme==="dark" ? 'sun' : 'moon'}
+                  key={isDarkMode ? 'sun' : 'moon'}
                   initial={{ scale: 0, rotate: -180 }}
                   animate={{ scale: 1, rotate: 0 }}
                   exit={{ scale: 0, rotate: 180 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
                 >
-                  {theme === "dark" ? (
+                  {isDarkMode ? (
                     <Sun size={22} weight="fill" />
                   ) : (
                     <Moon size={22} weight="bold" />
